@@ -16,5 +16,7 @@ if (isset($_GET['sid'])) {
     $sid=intval($_GET['sid']);
     $sql_lock="SELECT * FROM `solution` LEFT JOIN `source_code` ON `solution`.`solution_id`=`source_code`.`solution_id` WHERE `solution`.`solution_id`=?";
     $result=pdo_query($sql_lock, $sid) ;
-    var_dump($result[0]);
+    if(!empty($result)){
+        echo json_decode($result[0]);
+    }
 }
