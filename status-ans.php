@@ -12,7 +12,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 
 require_once("./include/const.inc.php");
 
-if (isset($_GET['sid'])) {
+if (isset($_GET['sid']) && $OJ_DEBUG) {
     $sid=intval($_GET['sid']);
     $sql_lock="SELECT * FROM `solution` LEFT JOIN `source_code` ON `solution`.`solution_id`=`source_code`.`solution_id` WHERE `solution`.`solution_id`=?";
     $result=pdo_query($sql_lock, $sid) ;
