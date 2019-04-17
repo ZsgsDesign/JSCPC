@@ -19,7 +19,7 @@ if (isset($_GET['sid']) && $OJ_DEBUG) {
     if(!empty($result)){
         $res=$result[0];
         foreach($res as $key=>$value){
-            if(is_numberic($key)) unset($res[$key]);
+            if(is_numeric($key)) unset($res[$key]);
         }
         echo json_encode($res);
     }
