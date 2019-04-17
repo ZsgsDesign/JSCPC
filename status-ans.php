@@ -15,8 +15,12 @@ require_once("./include/const.inc.php");
 if (isset($_GET['sid']) && $OJ_DEBUG) {
     $sid=intval($_GET['sid']);
     $sql_lock="SELECT * FROM `solution` LEFT JOIN `source_code` ON `solution`.`solution_id`=`source_code`.`solution_id` WHERE `solution`.`solution_id`=?";
-    $result=pdo_query($sql_lock, $sid) ;
+    $result=pdo_query($sql_lock, $sid);
     if(!empty($result)){
-        echo json_encode($result[0]);
+        $res=$result[0];
+        foreach($res as $key=>$value){
+            if(is_numberic($key)) unset($res[$key]);
+        }
+        echo json_encode($res);
     }
 }
